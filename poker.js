@@ -8,11 +8,10 @@ function readTableCards() {
         return (isNaN(x.children[0].innerText)?'the ':'') + face[x.children[0].innerText] + ' of ' + suit[x.children[2].innerText];
     });
 
-    var prefix = 'The cards present on the board are '
     if (cards.length > 1)
-        return prefix + cards.slice(0,-1).join(', ') + ' and ' + cards.slice(-1);
+        return 'The cards present on the board are ' + cards.slice(0,-1).join(', ') + ' and ' + cards.slice(-1);
     else if (cards.length == 1)
-        return prefix + cards[0];
+        return 'The card present on the board is ' + cards[0];
     else
         return "The board is currently empty"
 }
