@@ -66,3 +66,20 @@ function raise(amount) {
     document.getElementsByClassName("bet")[0].click();
     return "Amount bet"
 }
+
+// Function to fold
+function fold(alert_response = null) {
+    if (alert_response == null) {
+        document.getElementsByClassName("fold")[0].click();
+        var unnecessary_fold = (document.getElementsByClassName("alert-1-buttons")[0] != null);
+        if (unnecessary_fold) {
+            return "Are you sure that you want do an unnecessary fold?"
+        }
+    } else if (alert_response == true) {
+        document.getElementsByClassName("button-1 middle-gray")[0].click()
+        return "Folded"
+    } else if (alert_response == false) {
+        document.getElementsByClassName("button-1 red")[0].click()
+        return "Fold cancelled"
+    }
+}
