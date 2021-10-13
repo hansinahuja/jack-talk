@@ -1,56 +1,18 @@
-// status fields and start button in UI
-var phraseDiv;
-var startRecognizeOnceAsyncButton;
+// Main Game Module
 
-// subscription key and region for speech services.
-var subscriptionKey="dd0cbfeb63cb438984cb2c236a7b542a", serviceRegion="eastus";
-var SpeechSDK;
-var recognizer;
+function main() {
+    // Initialize the game
+    initialize();
 
-document.addEventListener("DOMContentLoaded", function () {
-  startRecognizeOnceAsyncButton = document.getElementById("startRecognizeOnceAsyncButton");
-  subscriptionKey = document.getElementById("subscriptionKey");
-  serviceRegion = document.getElementById("serviceRegion");
-  phraseDiv = document.getElementById("phraseDiv");
+    // Loop through the steps of the game
+    while(true) {
+        // Read the state of the table
+        call_states();
 
-  startRecognizeOnceAsyncButton.addEventListener("click", function () {
-    startRecognizeOnceAsyncButton.disabled = true;
-    phraseDiv.innerHTML = "";
+        // Get next command from user
+        command = get_command();
 
-    if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
-      alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
-      return;
+        // Call the next command
+        call_command(command);
     }
-    var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
-
-    speechConfig.speechRecognitionLanguage = "en-US";
-    var audioConfig  = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
-    recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
-
-    recognizer.recognizeOnceAsync(
-      function (result) {
-        startRecognizeOnceAsyncButton.disabled = false;
-        phraseDiv.innerHTML += result.text;
-        window.console.log(result);
-
-        recognizer.close();
-        recognizer = undefined;
-      },
-      function (err) {
-        startRecognizeOnceAsyncButton.disabled = false;
-        phraseDiv.innerHTML += err;
-        window.console.log(err);
-
-        recognizer.close();
-        recognizer = undefined;
-      });
-  });
-
-  if (!!window.SpeechSDK) {
-    SpeechSDK = window.SpeechSDK;
-    startRecognizeOnceAsyncButton.disabled = false;
-
-    document.getElementById('content').style.display = 'block';
-    document.getElementById('warning').style.display = 'none';
-  }
-});
+}

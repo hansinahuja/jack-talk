@@ -1,3 +1,11 @@
+// Module containing all Poker Functions
+
+// Command Dictionary
+command = {
+    'read_table_cards': readTableCards,
+    'read_my_cards'   : readMyCards
+};
+
 // Global dictionary for storing face value of cards
 var face = {
     'A': 'Ace', '2':'Two', '3':'Three', '4':'Four', '5':'Five',
