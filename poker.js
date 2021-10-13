@@ -84,3 +84,13 @@ function fold(alert_response = null) {
         return "Fold cancelled";
     }
 }
+
+// Function to call, it will handle the cases where "Bet x" is listed too! 
+function call() {
+    document.getElementsByClassName('call')[0].click()
+}
+
+// Function to check
+function check() {
+    document.getElementsByClassName('check')[0].click()
+}
