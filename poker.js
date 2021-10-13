@@ -94,3 +94,16 @@ function call() {
 function check() {
     document.getElementsByClassName('check')[0].click()
 }
+
+// Function to get one's balance amount
+function myBalance(username){
+    var allPlayers = document.getElementsByClassName('table-player-name')
+    var index;
+    for(let i = 0;i<allPlayers.length;i++){
+        if(allPlayers[i].innerHTML == username){
+            index = i;
+            break;
+        }
+    }
+    return document.getElementsByClassName('table-player-stack')[index].getElementsByTagName('span')[1].innerHTML;
+}
