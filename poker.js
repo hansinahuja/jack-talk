@@ -44,3 +44,25 @@ function readMyCards() {
 
     return 'Cards in hand are ' + card1String + ' and ' + card2String;
 }
+
+// Function to raise bet
+function raise(amount) {
+    document.getElementsByClassName('raise')[0].click()
+    if(amount == 'minimum') document.getElementsByClassName('default-bet-button')[0].click();
+    else if(amount == 'half pot') document.getElementsByClassName('default-bet-button')[1].click();
+    else if(amount == 'three-fourth pot') document.getElementsByClassName('default-bet-button')[2].click();
+    else if(amount == 'pot') document.getElementsByClassName('default-bet-button')[3].click();
+    else if(amount == 'all in') document.getElementsByClassName('default-bet-button')[4].click();
+    else{
+        
+        // Need to fix
+        document.getElementsByClassName('slider-control')[0].setAttribute('value', amount);
+        document.getElementsByClassName("raise-bet-value")[0].getElementsByClassName('value')[0].setAttribute('value', amount);
+        document.getElementsByClassName('slider-control')[0].value = amount;
+        document.getElementsByClassName("raise-bet-value")[0].getElementsByClassName('value')[0].value = amount;
+
+        if(document.getElementsByClassName("invalid").length > 0) return "Invalid betting amount";
+    }
+    document.getElementsByClassName("bet")[0].click();
+    return "Amount bet"
+}
