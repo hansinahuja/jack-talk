@@ -47,7 +47,10 @@ function readMyCards() {
 
 // Function to raise bet
 function raise(amount) {
-    if(document.getElementsByClassName('raise')[0] == undefined) return "That is not a valid action right now. Please try again."
+    if(document.getElementsByClassName('raise')[0] == undefined) {
+        speak("That is not a valid action right now. Please try again.");
+        return;
+    }
     document.getElementsByClassName('raise')[0].click()
     if(amount == 'minimum') document.getElementsByClassName('default-bet-button')[0].click();
     else if(amount == 'half pot') document.getElementsByClassName('default-bet-button')[1].click();
@@ -58,14 +61,18 @@ function raise(amount) {
 
         if(isNaN(amount.replace(/,/g, ''))){
             document.getElementsByClassName('back')[0].click();
-            return "Please say that again, we couldn't catch a number in your bet";
+            speak("Please say that again, we couldn't catch a number in your bet");
+            return;
         }
 
         let maximum = parseInt(document.getElementsByClassName('slider-control')[0].max);
         document.getElementsByClassName('default-bet-button')[0].click();
         let minimum = parseInt(document.getElementsByClassName('slider-control')[0].value);
         let current = parseInt(amount);
-        if(current < minimum || current > maximum) return "Please keep your bet between " + minimum.toString() + " and " + maximum.toString();
+        if(current < minimum || current > maximum) {
+            speak("Please keep your bet between " + minimum.toString() + " and " + maximum.toString());
+            return;
+        }
 
         // Need to fix
         document.getElementsByClassName('slider-control')[0].setAttribute('value', amount);
@@ -75,29 +82,42 @@ function raise(amount) {
 
         if(document.getElementsByClassName("invalid").length > 0){
             document.getElementsByClassName('back')[0].click();
-            return "Invalid betting amount";
+            speak("Invalid betting amount");
+            return
         }
     }
     document.getElementsByClassName("bet")[0].click();
-    return "Amount bet"
+    speak("Amount bet");
+    return;
+}
+
+// Function to check your turn
+function your_turn() {
+    return (document.getElementsByClassName("action-signal")[0] != null)
 }
 
 // Function to fold
-function fold(alert_response = null) {
-    if (alert_response == null) {
-        document.getElementsByClassName("fold")[0].click();
-        var unnecessary_fold = (document.getElementsByClassName("alert-1-buttons")[0] != null);
-        if (unnecessary_fold) {
-            return "Are you sure that you want do an unnecessary fold?";
-        }
-        return "Folded";
-    } else if (alert_response == true) {
-        document.getElementsByClassName("button-1 middle-gray")[0].click();
-        return "Folded";
-    } else if (alert_response == false) {
-        document.getElementsByClassName("button-1 red")[0].click();
-        return "Fold cancelled";
+function fold() {
+    if(!your_turn()) {
+        speak("Its not your turn right now");
+        return;
     }
+    document.getElementsByClassName("fold")[0].click();
+    var unnecessary_fold = (document.getElementsByClassName("alert-1-buttons")[0] != null);
+    if (unnecessary_fold) {
+        speak("Are you sure that you want do an unnecessary fold?");
+        response = listen();
+        if (response == "yes") {
+            document.getElementsByClassName("button-1 middle-gray")[0].click();
+            speak("Folded");
+        } else {
+            document.getElementsByClassName("button-1 red")[0].click();
+            speak("Fold cancelled");
+        }
+        return;
+    }
+    speak("Folded");
+    return;
 }
 
 // Function to call, it will handle the cases where "Bet x" is listed too! 
