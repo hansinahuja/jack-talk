@@ -47,6 +47,7 @@ function readMyCards() {
 
 // Function to raise bet
 function raise(amount) {
+    if(document.getElementsByClassName('raise')[0] == undefined) return "That is not a valid action right now. Please try again."
     document.getElementsByClassName('raise')[0].click()
     if(amount == 'minimum') document.getElementsByClassName('default-bet-button')[0].click();
     else if(amount == 'half pot') document.getElementsByClassName('default-bet-button')[1].click();
@@ -54,14 +55,28 @@ function raise(amount) {
     else if(amount == 'pot') document.getElementsByClassName('default-bet-button')[3].click();
     else if(amount == 'all in') document.getElementsByClassName('default-bet-button')[4].click();
     else{
-        
+
+        if(isNaN(amount.replace(/,/g, ''))){
+            document.getElementsByClassName('back')[0].click();
+            return "Please say that again, we couldn't catch a number in your bet";
+        }
+
+        let maximum = parseInt(document.getElementsByClassName('slider-control')[0].max);
+        document.getElementsByClassName('default-bet-button')[0].click();
+        let minimum = parseInt(document.getElementsByClassName('slider-control')[0].value);
+        let current = parseInt(amount);
+        if(current < minimum || current > maximum) return "Please keep your bet between " + minimum.toString() + " and " + maximum.toString();
+
         // Need to fix
         document.getElementsByClassName('slider-control')[0].setAttribute('value', amount);
         document.getElementsByClassName("raise-bet-value")[0].getElementsByClassName('value')[0].setAttribute('value', amount);
         document.getElementsByClassName('slider-control')[0].value = amount;
         document.getElementsByClassName("raise-bet-value")[0].getElementsByClassName('value')[0].value = amount;
 
-        if(document.getElementsByClassName("invalid").length > 0) return "Invalid betting amount";
+        if(document.getElementsByClassName("invalid").length > 0){
+            document.getElementsByClassName('back')[0].click();
+            return "Invalid betting amount";
+        }
     }
     document.getElementsByClassName("bet")[0].click();
     return "Amount bet"
