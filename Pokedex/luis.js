@@ -25,5 +25,7 @@ function get_intent(utterance) {
     intent = output.prediction.topIntent;
     entity = output.prediction.entities.number;
 
+    console.log(output);
+
     return [intent, entity];
 }

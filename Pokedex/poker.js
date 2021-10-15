@@ -2,10 +2,10 @@
 
 // Command Dictionary
 command = {
-    'All-In'     : raise,
+    'All-In'     : all_in,
     'Bet-X'      : raise,
-    'Pot-Bet'    : raise,
-    'Min-Bet'    : raise,
+    'Pot-Bet'    : pot_bet,
+    'Min-Bet'    : min_bet,
     'Call'       : call,
     'Check'      : check,
     'Fold'       : fold,
@@ -98,6 +98,19 @@ function raise(amount) {
     document.getElementsByClassName("bet")[0].click();
     speak("Amount bet");
     return;
+}
+
+// Sub Functions for raise
+function all_in() {
+    raise('all in');
+}
+
+function pot_bet() {
+    raise('pot');
+}
+
+function min_bet() {
+    raise('minimum');
 }
 
 // Function to check your turn

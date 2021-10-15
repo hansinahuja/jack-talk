@@ -93,6 +93,9 @@
               // Entity is used for Bet-X, LUIS directly gets the bet amount
               // For other intents, entity is undefined
               [intent, entity] = get_intent(response);
+              if (command[intent] == undefined) {
+                throw Error;
+              }
               speak(command[intent](entity));
               // speak(readTableCards());
               handling = true;
