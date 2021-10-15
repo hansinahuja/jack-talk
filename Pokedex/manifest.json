@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Pokedex",
+    "version": "0.1",
+    "description": "Making poker accessible",
+    "icons": {
+        "128": "favicon.png"
+    },
+    "action": {
+        "default_icon": "favicon.png",
+        "default_title": "Pokedex: Making poker accessible"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [{
+            "matches": ["https://www.pokernow.club/games/*"],
+            "js": ["azurespeech.js", "poker.js", "speech.js", "index.js", "readLogs.js"]
+        }
+    ]
+}
