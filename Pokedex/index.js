@@ -89,6 +89,10 @@
           listen(
             (response) => {
               // Add LUIS functoinality here
+              // Check command dictionary in poker.js for list of intents
+              // Entity is used for Bet-X, LUIS directly gets the bet amount
+              // For other intents, entity is undefined
+              [intent, entity] = get_intent(response);
               speak(readTableCards());
               handling = true;
             },

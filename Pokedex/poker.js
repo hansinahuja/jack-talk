@@ -2,8 +2,17 @@
 
 // Command Dictionary
 command = {
-    'read_table_cards': readTableCards,
-    'read_my_cards'   : readMyCards
+    'All-In'     : raise,
+    'Bet-X'      : raise,
+    'Pot-Bet'    : raise,
+    'Min-Bet'    : raise,
+    'Call'       : call,
+    'Check'      : check,
+    'Fold'       : fold,
+    'My-Balance' : myBalance,
+    'Table-Cards': readTableCards,
+    'My-Cards'   : readMyCards,
+    'None'       : undefined
 };
 
 // Global dictionary for storing face value of cards
