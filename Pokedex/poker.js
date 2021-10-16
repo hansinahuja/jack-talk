@@ -176,23 +176,31 @@ function myBalance(){
     return value;
 }
 
-// Function to read all possible options
+// Function to read all possible options {"Bet x" is call, Bet is raise}
 function read_all() {
     var available = []
     if(document.getElementsByClassName('check')[0] != undefined){
-        available.push("check");
-    } 
-    if(document.getElementsByClassName('call')[0] != undefined){
-        available.push("call");
+        if(document.getElementsByClassName("button-1 with-tip check green ")[0].disabled != true){
+            available.push(document.getElementsByClassName("button-1 with-tip check green ")[0].innerHTML);
+        } 
     }
-    if(document.getElementsByClassName('bet')[0] != undefined){
-        available.push("bet");
-    }   
+    
+    if(document.getElementsByClassName('call')[0] != undefined) {
+        if(document.getElementsByClassName('button-1 call with-tip call green ')[0].disabled != true){
+            available.push(document.getElementsByClassName('button-1 call with-tip call green ')[0].innerHTML);
+        }
+    }
+
     if(document.getElementsByClassName('fold')[0] != undefined){
-        available.push("fold");
+        if(document.getElementsByClassName('button-1 with-tip fold red ')[0].disabled != true){
+            available.push(document.getElementsByClassName('button-1 with-tip fold red ')[0].innerHTML);
+        }
     }
+
     if(document.getElementsByClassName('raise')[0] != undefined){
-        available.push("raise");
+        if(document.getElementsByClassName('button-1 with-tip raise green')[0].disabled != true){
+            available.push(document.getElementsByClassName('button-1 with-tip raise green')[0].innerHTML);
+        }
     }
 
     if(available.length == 0) {
