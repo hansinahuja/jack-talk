@@ -78,17 +78,29 @@ function raise(amount) {
         let maximum = parseInt(document.getElementsByClassName('slider-control')[0].max);
         document.getElementsByClassName('default-bet-button')[0].click();
         let minimum = parseInt(document.getElementsByClassName('slider-control')[0].value);
-        let current = parseInt(amount);
-        if(current < minimum || current > maximum) {
+        let to_bet = parseInt(amount.replace(/,/g, ''));
+        if(to_bet < minimum || to_bet > maximum) {
             speak("Please keep your bet between " + minimum.toString() + " and " + maximum.toString());
             return;
         }
 
-        // Need to fix
-        document.getElementsByClassName('slider-control')[0].setAttribute('value', amount);
-        document.getElementsByClassName("raise-bet-value")[0].getElementsByClassName('value')[0].setAttribute('value', amount);
-        document.getElementsByClassName('slider-control')[0].value = amount;
-        document.getElementsByClassName("raise-bet-value")[0].getElementsByClassName('value')[0].value = amount;
+        var current = parseInt(document.getElementsByClassName('slider-control')[0].value);
+
+        if(current >= to_bet){
+            var button = document.getElementsByClassName("decrease")[0];
+            while(current >= to_bet){
+                button.click();
+                current = parseInt(document.getElementsByClassName('slider-control')[0].value);
+            }
+        }
+        else{
+            var button = document.getElementsByClassName("increase")[0];
+            while(current < to_bet){
+                button.click();
+                current = parseInt(document.getElementsByClassName('slider-control')[0].value);
+            }
+        }
+
 
         if(document.getElementsByClassName("invalid").length > 0){
             document.getElementsByClassName('back')[0].click();
