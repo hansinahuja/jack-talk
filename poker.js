@@ -122,12 +122,49 @@ function fold() {
 
 // Function to call, it will handle the cases where "Bet x" is listed too! 
 function call() {
+    if(document.getElementsByClassName('call')[0] == undefined) {
+        speak("That is not a valid action right now. Please try again.");
+        return;
+    }
     document.getElementsByClassName('call')[0].click()
+    speak("Called successfully")
 }
 
 // Function to check
 function check() {
+    if(document.getElementsByClassName('check')[0] == undefined) {
+        speak("That is not a valid action right now. Please try again.");
+        return;
+    }
     document.getElementsByClassName('check')[0].click()
+    speak("Checked successfully")
+}
+
+// Function to read all possible options
+function read_all() {
+    var available = []
+    if(document.getElementsByClassName('check')[0] != undefined){
+        available.push("check");
+    } 
+    if(document.getElementsByClassName('call')[0] != undefined){
+        available.push("call");
+    }
+    if(document.getElementsByClassName('bet')[0] != undefined){
+        available.push("bet");
+    }   
+    if(document.getElementsByClassName('fold')[0] != undefined){
+        available.push("fold");
+    }
+    if(document.getElementsByClassName('raise')[0] != undefined){
+        available.push("raise");
+    }
+    if(available.length == 0) {
+        speak("You don't have any available option at this moment.");
+    } else {
+        speak("Your available options are.");
+        var x = available.join()  + ".";
+        speak(x);
+    }
 }
 
 // Function to get one's balance amount
