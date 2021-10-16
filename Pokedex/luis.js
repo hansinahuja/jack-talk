@@ -5,7 +5,7 @@
 // Key Variables to set for API
 var PROJECT_NAME = "macrohard"
 var APPID = "59bfba6f-5297-4341-b700-c9b6b8b1f54a";
-var SUBSCRIPTION_KEY = "2973ea929c9040b182a820d214b2e666"
+var SUBSCRIPTION_KEY = "2973ea929c9040b182a820d214b2e666";
 
 // Internally call the LUIS API
 function get_intent(utterance) {

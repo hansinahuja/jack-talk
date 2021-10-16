@@ -12,6 +12,7 @@ command = {
     'My-Balance' : myBalance,
     'Table-Cards': readTableCards,
     'My-Cards'   : readMyCards,
+    'My-Options' : read_all,
     'None'       : undefined
 };
 
@@ -173,4 +174,31 @@ function myBalance(){
     var value = youStack.getElementsByTagName('span')[1].innerHTML; 
     speak("Your current balance is " + value.toString());
     return value;
+}
+
+// Function to read all possible options
+function read_all() {
+    var available = []
+    if(document.getElementsByClassName('check')[0] != undefined){
+        available.push("check");
+    } 
+    if(document.getElementsByClassName('call')[0] != undefined){
+        available.push("call");
+    }
+    if(document.getElementsByClassName('bet')[0] != undefined){
+        available.push("bet");
+    }   
+    if(document.getElementsByClassName('fold')[0] != undefined){
+        available.push("fold");
+    }
+    if(document.getElementsByClassName('raise')[0] != undefined){
+        available.push("raise");
+    }
+
+    if(available.length == 0) {
+        speak("You don't have any available option at this moment.");
+    } else {
+        var x = "Your available options are " + available.join() + ".";
+        speak(x);
+    }
 }

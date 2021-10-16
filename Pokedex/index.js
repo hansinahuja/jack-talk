@@ -93,10 +93,16 @@
               // Entity is used for Bet-X, LUIS directly gets the bet amount
               // For other intents, entity is undefined
               [intent, entity] = get_intent(response);
-              if (command[intent] == undefined) {
-                throw Error;
+              var command_function = command[intent];
+              if (command_function == undefined) {
+                speak("I could not catch that");
               }
-              speak(command[intent](entity));
+              else {
+                var value = command[intent](entity);
+                if (value != undefined) {
+                  speak(value);
+                }
+              }
               // speak(readTableCards());
               handling = true;
             },
