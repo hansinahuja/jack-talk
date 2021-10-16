@@ -131,14 +131,10 @@ function check() {
 }
 
 // Function to get one's balance amount
-function myBalance(username){
-    var allPlayers = document.getElementsByClassName('table-player-name')
-    var index;
-    for(let i = 0;i<allPlayers.length;i++){
-        if(allPlayers[i].innerHTML == username){
-            index = i;
-            break;
-        }
-    }
-    return document.getElementsByClassName('table-player-stack')[index].getElementsByTagName('span')[1].innerHTML;
+function myBalance(){
+    var youPlayer = document.getElementsByClassName('you-player')[0];
+    var youStack = youPlayer.getElementsByClassName('table-player-infos-ctn')[0].getElementsByClassName('table-player-stack')[0]
+    var value = youStack.getElementsByTagName('span')[1].innerHTML; 
+    speak("Your current balance is " + value.toString());
+    return value;
 }

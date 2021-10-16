@@ -148,23 +148,29 @@ function fold() {
 
 // Function to call, it will handle the cases where "Bet x" is listed too! 
 function call() {
+    if(document.getElementsByClassName('call')[0] == undefined) {
+        speak("That is not a valid action right now. Please try again.");
+        return;
+    }
     document.getElementsByClassName('call')[0].click()
+    speak("Called successfully")
 }
 
 // Function to check
 function check() {
+    if(document.getElementsByClassName('check')[0] == undefined) {
+        speak("That is not a valid action right now. Please try again.");
+        return;
+    }
     document.getElementsByClassName('check')[0].click()
+    speak("Checked successfully")
 }
 
 // Function to get one's balance amount
-function myBalance(username){
-    var allPlayers = document.getElementsByClassName('table-player-name')
-    var index;
-    for(let i = 0;i<allPlayers.length;i++){
-        if(allPlayers[i].innerHTML == username){
-            index = i;
-            break;
-        }
-    }
-    return document.getElementsByClassName('table-player-stack')[index].getElementsByTagName('span')[1].innerHTML;
+function myBalance(){
+    var youPlayer = document.getElementsByClassName('you-player')[0];
+    var youStack = youPlayer.getElementsByClassName('table-player-infos-ctn')[0].getElementsByClassName('table-player-stack')[0]
+    var value = youStack.getElementsByTagName('span')[1].innerHTML; 
+    speak("Your current balance is " + value.toString());
+    return value;
 }
