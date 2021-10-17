@@ -14,6 +14,7 @@ setTimeout(() => {
   var spoken = {};
   var lastTurn = null;
   var lastCards = null;
+  var first_run = true;
 
   var update = () => {
     ledger_btn.click();
@@ -39,7 +40,8 @@ setTimeout(() => {
         }
       }
       console.log(toSpeak);
-      speak(toSpeak);
+      if(!first_run)  speak(toSpeak);
+      first_run = false;
     }, 3000);
   };
 
