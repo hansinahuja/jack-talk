@@ -98,7 +98,12 @@
                 speak("I could not catch that");
               }
               else {
-                var value = command[intent](entity);
+                if (entity == undefined) {
+                  var value = command[intent]();
+                }
+                else {
+                  var value = command[intent](entity[0].toString());
+                }
                 if (value != undefined) {
                   speak(value);
                 }

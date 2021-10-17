@@ -45,8 +45,6 @@ setTimeout(() => {
 
   setInterval(() => {
     if (
-      document.getElementsByClassName("decision-current")[0].className !=
-        lastTurn ||
       lastCards != readTableCards()
     ) {
       lastTurn =
