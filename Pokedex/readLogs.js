@@ -42,7 +42,7 @@ setTimeout(() => {
       console.log(toSpeak);
       if(!first_run)  speak(toSpeak);
       first_run = false;
-    }, 3000);
+    }, 4000);
   };
 
   setInterval(() => {
