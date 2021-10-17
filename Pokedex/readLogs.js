@@ -20,7 +20,7 @@ setTimeout(() => {
     ledger_btn.click();
     setTimeout(() => {
       full_logs_btn.click();
-    }, 1000);
+    }, 2000);
     setTimeout(() => {
       var logs = [].slice
         .call(document.getElementsByClassName("log-modal-entries")[0].children)
@@ -42,11 +42,13 @@ setTimeout(() => {
       console.log(toSpeak);
       if(!first_run)  speak(toSpeak);
       first_run = false;
-    }, 4000);
+    }, 4500);
   };
 
   setInterval(() => {
     if (
+      document.getElementsByClassName("decision-current")[0].className !=
+        lastTurn ||
       lastCards != readTableCards()
     ) {
       lastTurn =
