@@ -11,7 +11,7 @@
         "default_title": "JackTalk: Making poker accessible"
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "scripts/background.js"
     },
     "content_scripts": [{
             "matches": ["https://www.pokernow.club/games/*"],
