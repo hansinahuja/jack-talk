@@ -1,4 +1,4 @@
-var subscriptionKey = "dd0cbfeb63cb438984cb2c236a7b542a",
+var subscriptionKey = "<<your_key>>",
   serviceRegion = "eastus";
 var SpeechSDK;
 var recognizer, synthesizer;
@@ -17,7 +17,7 @@ setTimeout(() => {
 
 var listen = (f = () => {}, e = ()=> {}) => {
   var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(
-    "dd0cbfeb63cb438984cb2c236a7b542a",
+    "<<your_key>>",
     "eastus"
   );
 
@@ -70,7 +70,7 @@ var listen = (f = () => {}, e = ()=> {}) => {
 
 var speak = (text) => {
   var speechConfig = SpeechSDK.SpeechConfig.fromSubscription(
-    "dd0cbfeb63cb438984cb2c236a7b542a",
+    "<<your_key>>",
     "eastus"
   );
 
